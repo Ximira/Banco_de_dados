@@ -1,0 +1,53 @@
+CREATE TABLETB_MENSALIDADE (
+  Id_Mensalidade INTEGER NOT NULLIDENTITY ,
+  Valor_Mensalidade DECIMAL(7, 2)  NOTNULL  ,
+  Desconto_MensalidadeDECIMAL(5, 2)    ,
+  Status_MensalidadeCHAR(1)      ,
+PRIMARYKEY(Id_Mensalidade));
+GO
+
+
+
+
+CREATE TABLETB_CURSO (
+  Id_Curso INTEGER NOT NULLIDENTITY ,
+  TB_MENSALIDADE_Id_Mensalidade INTEGER NOTNULL  ,
+  Nome_Curso VARCHAR(30)  NOTNULL  ,
+  Duracao_Curso VARCHAR(20)  NOTNULL  ,
+  Status_Curso CHAR(1)  NOTNULL    ,
+PRIMARYKEY(Id_Curso)  ,
+  FOREIGNKEY(TB_MENSALIDADE_Id_Mensalidade)
+    REFERENCESTB_MENSALIDADE(Id_Mensalidade));
+GO
+
+
+CREATE INDEX TB_CURSO_FKIndex1 ONTB_CURSO (TB_MENSALIDADE_Id_Mensalidade);
+GO
+
+
+CREATE INDEX IFK_Rel_03 ONTB_CURSO (TB_MENSALIDADE_Id_Mensalidade);
+GO
+
+
+CREATE TABLETB_ALUNO (
+  Id_Aluno INTEGER NOT NULLIDENTITY ,
+  TB_CURSO_Id_Curso INTEGER NOTNULL  ,
+  Nome_Aluno VARCHAR(45)  NOTNULL  ,
+  Telefone_AlunoVARCHAR(20)    ,
+  Email_AlunoVARCHAR(60)    ,
+  Status_AlunoCHAR(1)      ,
+PRIMARYKEY(Id_Aluno)  ,
+  FOREIGNKEY(TB_CURSO_Id_Curso)
+    REFERENCESTB_CURSO(Id_Curso));
+GO
+
+
+CREATE INDEX TB_ALUNO_FKIndex1 ONTB_ALUNO (TB_CURSO_Id_Curso);
+GO
+
+
+CREATE INDEX IFK_Rel_02 ONTB_ALUNO (TB_CURSO_Id_Curso);
+GO
+
+
+
