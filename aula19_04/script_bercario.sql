@@ -89,3 +89,19 @@ GO
 
 SELECT * FROM TB_BEBE
 GO
+
+-- Atualizar telefone
+UPDATE TB_MAE 
+	SET Telefone_Mae = '1144443333',
+	Endereco_Mae = 'Rua São Vicente, 43 - centro - sp'
+	WHERE Id_Mae = 2
+GO
+
+-- Remover uma linha
+DELETE FROM TB_MAE WHERE Id_Mae = 2
+GO
+
+-- Exercicios
+-- 1) Selecionar nome mae, nome, bebe, nome medico 
+-- para todas as maes,
+-- OBS: Ordenado por nome mae
