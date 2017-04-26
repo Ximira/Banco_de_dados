@@ -105,3 +105,45 @@ GO
 -- 1) Selecionar nome mae, nome, bebe, nome medico 
 -- para todas as maes,
 -- OBS: Ordenado por nome mae
+
+SELECT TB_MAE.Nome_Mae,
+	   TB_BEBE.Nome_Bebe,
+	   TB_MEDICO.Nome_Medico
+FROM TB_MAE,TB_BEBE,TB_MEDICO
+WHERE TB_MAE.Id_Mae = TB_BEBE.Id_Mae
+AND TB_BEBE.Id_Medico = TB_MEDICO.Id_Medico
+ORDER BY TB_BEBE.Nome_Bebe ASC
+GO
+
+-- Opção 2
+SELECT T1.Nome_Mae,
+	   T2.Nome_Bebe,
+	   T3.Nome_Medico
+FROM TB_MAE T1,TB_BEBE T2,TB_MEDICO T3
+WHERE T1.Id_Mae = T2.Id_Mae
+AND T2.Id_Medico = T3.Id_Medico
+ORDER BY T2.Nome_Bebe ASC
+GO
+
+--Exercício 2
+--Selecionar o nome do bebe, data de nascimento do bebe, 
+--crm do médico, nome do medico onde o ID_Medico = 1
+
+SELECT T1.Nome_Bebe,
+	   T1.Data_Nascto_Bebe,
+	   T2.Crm_Medico,
+	   T2.Nome_Medico
+FROM TB_BEBE T1, TB_MEDICO T2
+WHERE T1.Id_Medico = T2.Id_Medico 
+AND T2.Id_Medico IN (1,2)
+GO
+
+SELECT T1.Nome_Bebe,
+	   T1.Data_Nascto_Bebe,
+	   T2.Crm_Medico,
+	   T2.Nome_Medico
+FROM TB_BEBE T1, TB_MEDICO T2
+WHERE T1.Id_Medico = T2.Id_Medico 
+AND (T2.Id_Medico = 1
+OR   T2.Id_Medico = 2)
+GO
