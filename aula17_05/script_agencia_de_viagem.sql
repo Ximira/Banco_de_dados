@@ -11,7 +11,7 @@ Exercicio
 	1.2) Desenvolver Modelo de Dados (MER)
 	1.3) Criar script (manual)
 	1.4) Executar script
-	1.5) Inserir 2 registros emcada tabela
+	1.5) Inserir 2 registros em cada tabela
 	1.6) Atualizar telefone do Id_Cliente 1
 	1.7) Selecionar
 		1.7.1 Selecionar nome_cliente, valor com o maior valor do pacote

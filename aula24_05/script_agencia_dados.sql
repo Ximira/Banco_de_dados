@@ -82,3 +82,44 @@ SELECT * FROM TB_PACOTE
 GO
 SELECT * FROM TB_CAIXA
 GO
+
+UPDATE TB_CLIENTE 
+SET Telefone_Cliente = '(11)3333-4444', Nome_Cliente = 'Maria Vicente' 
+WHERE Id_Cliente = 1
+GO
+
+-- 1.7.1 Selecionar nome_cliente, valor com o maior valor do pacote
+
+CREATE VIEW V_CLIENTE_MAIOR_VALOR 
+AS
+SELECT TB_CLIENTE.Nome_Cliente, TB_PACOTE.Valor_Pacote 
+FROM TB_CLIENTE, TB_PACOTE
+WHERE TB_CLIENTE.Id_Cliente = TB_PACOTE.Id_Cliente
+AND TB_PACOTE.Valor_Pacote = (SELECT MAX(TB_PACOTE.Valor_Pacote) FROM TB_PACOTE)
+GO
+
+SELECT * FROM V_CLIENTE_MAIOR_VALOR 
+GO
+
+-- 1.7.2 Selecionar a soma de valores no caixa
+CREATE VIEW V_VALOR_TOTAL_CAIXA
+AS
+SELECT SUM(TB_CAIXA.Valor_Caixa) AS Valor_Caixa FROM TB_CAIXA
+GO
+
+SELECT * FROM V_VALOR_TOTAL_CAIXA
+GO
+
+-- 1.7.3 Selecionar nome_cliente, nome_funcionario agrupando funcionarios por cliente
+
+SELECT T1.Nome_Cliente, T2.Nome_Funcionario 
+FROM TB_CLIENTE T1,TB_FUNCIONARIO T2, TB_PACOTE T3
+WHERE T3.Id_Cliente = T1.Id_Cliente
+AND T3.Id_Funcionario = T2.Id_Funcionario
+GROUP BY T1.Nome_Cliente, T2.Nome_Funcionario
+GO
+
+--1.7.4 Selecionar a media de de calores de pacote
+
+SELECT AVG(Valor_Caixa) FROM TB_CAIXA
+GO
